@@ -6,6 +6,7 @@ import com.cis365.week5.models.Customer;
 import com.cis365.week5.models.Planet;
 import com.cis365.week5.models.PlanetVisit;
 import com.cis365.week5.models.Rep;
+import com.cis365.week5.models.Starship;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,19 +19,19 @@ public class DataStore {
 
     private static SessionFactory buildSessionFactory() {
         try {
-            /*
-            String dbName = System.getenv("RDS_DB_NAME");
-            String userName = System.getenv("RDS_USERNAME");
-            String password = System.getenv("RDS_PASSWORD");
-            String hostname = System.getenv("RDS_HOSTNAME");
-            String port = System.getenv("RDS_PORT");
-            String jdbcUrl = "jdbc:oracle:thin:@" + hostname + ":" + port + ":" + dbName;
-            */
-                    
+
+//            String dbName = System.getenv("RDS_DB_NAME");
+//            String userName = System.getenv("RDS_USERNAME");
+//            String password = System.getenv("RDS_PASSWORD");
+//            String hostname = System.getenv("RDS_HOSTNAME");
+//            String port = System.getenv("RDS_PORT");
+//            String jdbcUrl = "jdbc:oracle:thin:@" + hostname + ":" + port + ":" + dbName;
+
             // Create the SessionFactory from hibernate.cfg.xml
             Configuration cfg = new Configuration();
-            
-            
+
+
+
             cfg.configure("hibernate.cfg.xml");//populates the data of the configuration file
             return cfg.buildSessionFactory();
         } catch (Throwable ex) {
@@ -55,26 +56,38 @@ public class DataStore {
 //        }
 //        return null;
 //    }
-    
-    public static List<PlanetVisit> listVisits(){
+    public static List<Starship> listStarships() {
+
         Session session = getSessionFactory().openSession();
-        
-        try{
-            return session.createQuery("FROM PlanetVisit").list();
-        } catch (Exception e){
+        try {
+            return session.createQuery("FROM Starship").list();
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
         return null;
-    } 
-    
-    public static List<Planet> listPlanets(){
+    }
+
+    public static List<PlanetVisit> listVisits() {
         Session session = getSessionFactory().openSession();
-        
+
+        try {
+            return session.createQuery("FROM PlanetVisit").list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public static List<Planet> listPlanets() {
+        Session session = getSessionFactory().openSession();
+
         try {
             return session.createQuery("FROM Planet").list();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();
@@ -93,10 +106,11 @@ public class DataStore {
 //        }
 //        return null;
 //    }
-    public static Planet findPlanetById(String planetId){
+
+    public static Planet findPlanetById(String planetId) {
         Session session = getSessionFactory().openSession();
-        
-        try{
+
+        try {
             return (Planet) session.get(Planet.class, planetId);
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -117,30 +131,30 @@ public class DataStore {
 //        }
 //        return null;
 //    }
-public static Planet updateVisit(String planetId, PlanetVisit visitToUpdate) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
+//public static Planet updateVisit(String planetId, PlanetVisit visitToUpdate) {
+//        Session session = getSessionFactory().openSession();
+//        Transaction tx = null;
+//
+//        try {
+//            tx = session.beginTransaction();
+//            PlanetVisit existing = findVisit(planetId);
+//            if (existing != null && planetId == planetToUpdate.getPlanetId())
+//                existing = planetToUpdate;
+//            tx.commit();
+//            return planetToUpdate;
+//        }  catch (HibernateException e) {
+//            if (tx != null)
+//                tx.rollback();
+//            e.printStackTrace();
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            session.close();
+//        }
+//        return null;
+//    }
+//    
 
-        try {
-            tx = session.beginTransaction();
-            PlanetVisit existing = findVisit(planetId);
-            if (existing != null && planetId == planetToUpdate.getPlanetId())
-                existing = planetToUpdate;
-            tx.commit();
-            return planetToUpdate;
-        }  catch (HibernateException e) {
-            if (tx != null)
-                tx.rollback();
-            e.printStackTrace();
-        }catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return null;
-    }
-    
-    
 //    public static Rep updateRep(String repNum, Rep repToUpdate) {
 //        Session session = getSessionFactory().openSession();
 //        Transaction tx = null;
@@ -163,23 +177,24 @@ public static Planet updateVisit(String planetId, PlanetVisit visitToUpdate) {
 //        }
 //        return null;
 //    }
-    
-     public static Planet updatePlanet(String planetId, Planet planetToUpdate) {
+    public static Planet updatePlanet(String planetId, Planet planetToUpdate) {
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
 
         try {
             tx = session.beginTransaction();
             Planet existing = findPlanetById(planetId);
-            if (existing != null && planetId == planetToUpdate.getPlanetId())
+            if (existing != null && planetId == planetToUpdate.getPlanetId()) {
                 existing = planetToUpdate;
+            }
             tx.commit();
             return planetToUpdate;
-        }  catch (HibernateException e) {
-            if (tx != null)
+        } catch (HibernateException e) {
+            if (tx != null) {
                 tx.rollback();
+            }
             e.printStackTrace();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             session.close();

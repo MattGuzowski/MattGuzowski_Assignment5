@@ -1,4 +1,3 @@
-
 package com.cis365.week5;
 
 import com.cis365.week5.models.Planet;
@@ -9,22 +8,20 @@ import org.springframework.http.MediaType;
 
 @RestController
 public class PlanetController {
-    
+
     //@RequestMapping("/planet")
     @GetMapping("/planet")
-    public List<Planet>planets(){
+    public List<Planet> planets() {
         return DataStore.listPlanets();
     }
-    
+
     @GetMapping("/planet/{id}")
-    //do something here to get bty id
-    public Planet getPlanetById(String planetId){
-        return DataStore.findPlanetById(planetId);//should have a method to return planet by id
+    public Planet getPlanetById(String planetId) {
+        return DataStore.findPlanetById(planetId);
     }
-    
-    @PostMapping(value="/planet/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE})
-    public Planet addPlanet(@PathVariable(value = "planetId") String planetId,@RequestBody Planet planetToUpdate) {
+
+    @PostMapping(value = "/planet/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public Planet addPlanet(@PathVariable(value = "planetId") String planetId, @RequestBody Planet planetToUpdate) {
         return DataStore.updatePlanet(planetId, planetToUpdate);
     }
 }
-

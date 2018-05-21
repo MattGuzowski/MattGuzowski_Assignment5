@@ -1,14 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.cis365.week5;
 
-/**
- *
- * @author Matt Guzowski
- */
+import com.cis365.week5.models.Starship;
+import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
 public class StarshipController {
+    @GetMapping("/starship")
+    public List<Starship> starship(){
+        return DataStore.listStarships();
+    }
     
 }
