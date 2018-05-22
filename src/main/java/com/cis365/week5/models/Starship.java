@@ -11,25 +11,25 @@ public class Starship {
 
     @Id
     @Column(name = "STARSHIPID")
-    private String starShipId;
+    private int starShipId;
 
     @Column(name = "NAME")
     private String name;
 
     @Column(name = "CREWSIZE")
-    private String crewSize;
+    private int crewSize;
 
     @Column(name = "SHIPCLASS")
     private String shipClass;
 
     @Column(name = "LAUNCHSTARDATE")
-    private String launchStardate;
+    private int launchStardate;
 
-    public String getStarShipId() {
+    public int getStarShipId() {
         return starShipId;
     }
 
-    public void setStarShipId(String starShipId) {
+    public void setStarShipId(int starShipId) {
         this.starShipId = starShipId;
     }
 
@@ -41,11 +41,11 @@ public class Starship {
         this.name = name;
     }
 
-    public String getCrewSize() {
+    public int getCrewSize() {
         return crewSize;
     }
 
-    public void setCrewSize(String crewSize) {
+    public void setCrewSize(int crewSize) {
         this.crewSize = crewSize;
     }
 
@@ -57,11 +57,11 @@ public class Starship {
         this.shipClass = shipClass;
     }
 
-    public String getLaunchStardate() {
+    public int getLaunchStardate() {
         return launchStardate;
     }
 
-    public void setLaunchStardate(String launchStardate) {
+    public void setLaunchStardate(int launchStardate) {
         this.launchStardate = launchStardate;
     }
 }

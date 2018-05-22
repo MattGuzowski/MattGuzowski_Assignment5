@@ -10,18 +10,18 @@ public class Planet {
 
     @Id
     @Column(name = "PLANETID")
-    private String planetId;
+    private int planetId;
 
     @Column(name = "NAME")
     private String name;
 
     @Column(name = "RADIUS")
-    private String radius;
+    private int radius;
 
     @Column(name = "ATMOSPHERE")
     private String atmosphere;
 
-    public Planet(String planetIDIn, String nameIn, String radiusIn, String atmosphereIn) {
+    public Planet(int planetIDIn, String nameIn, int radiusIn, String atmosphereIn) {
 
         this.planetId = planetIDIn;
         this.name = nameIn;
@@ -29,11 +29,11 @@ public class Planet {
         this.atmosphere = atmosphereIn;
     }
 
-    public String getPlanetId() {
+    public int getPlanetId() {
         return planetId;
     }
 
-    public void setPlanetId(String planetId) {
+    public void setPlanetId(int planetId) {
         this.planetId = planetId;
     }
 
@@ -45,11 +45,11 @@ public class Planet {
         this.name = name;
     }
 
-    public String getRadius() {
+    public int getRadius() {
         return radius;
     }
 
-    public void setRadius(String radius) {
+    public void setRadius(int radius) {
         this.radius = radius;
     }
 

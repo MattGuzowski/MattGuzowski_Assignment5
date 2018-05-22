@@ -7,9 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 public class StarshipController {
+    
     @GetMapping("/starship")
     public List<Starship> starship(){
         return DataStore.listStarships();
     }
+    //find
+    
+    //delete
+    
+    //update
     
 }

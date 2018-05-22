@@ -7,6 +7,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String hello() {
-        return "hello world";
+        return "hello, welcome to the planet database!";
     }
 }

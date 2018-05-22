@@ -13,6 +13,9 @@ public class PlanetVisitController {
     public List<PlanetVisit> visits() {
         return DataStore.listVisits();
     }
+       
+    //add new visit
+    
 //    @PostMapping(value = "/visit/{{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
 //
 //    public PlanetVisit addVisit(@PathVariable(value = "planetId") String planetId,@RequestBody PlanetVisit visitToUpdate){

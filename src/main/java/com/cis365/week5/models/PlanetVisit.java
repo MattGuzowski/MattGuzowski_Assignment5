@@ -11,48 +11,48 @@ public class PlanetVisit {
     
     @Id //id as primary key
     @Column(name = "PLANETID")
-    private String planetId;
+    private int planetId;
     
     @Id
     @Column(name = "STARSHIPID")
-    private String starshipID;
+    private int starshipID;
     
     @Id
     @Column(name = "ARRIVALSTARDATE")
-    private String arrivalStardate;
+    private int arrivalStardate;
     
     @Column(name = "DEPARTURESTARDATE")
-        private String departureStardate;
+    private int departureStardate;
 
-    public String getPlanetId() {
+    public int getPlanetId() {
         return planetId;
     }
 
-    public void setPlanetId(String planetId) {
+    public void setPlanetId(int planetId) {
         this.planetId = planetId;
     }
 
-    public String getStarshipID() {
+    public int getStarshipID() {
         return starshipID;
     }
 
-    public void setStarshipID(String starshipID) {
+    public void setStarshipID(int starshipID) {
         this.starshipID = starshipID;
     }
 
-    public String getArrivalStardate() {
+    public int getArrivalStardate() {
         return arrivalStardate;
     }
 
-    public void setArrivalStardate(String arrivalStardate) {
+    public void setArrivalStardate(int arrivalStardate) {
         this.arrivalStardate = arrivalStardate;
     }
 
-    public String getDepartureStardate() {
+    public int getDepartureStardate() {
         return departureStardate;
     }
 
-    public void setDepartureStardate(String departureStardate) {
+    public void setDepartureStardate(int departureStardate) {
         this.departureStardate = departureStardate;
     }
     
