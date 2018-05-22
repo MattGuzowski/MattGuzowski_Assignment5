@@ -15,10 +15,10 @@ public class PlanetVisitController {
     }
        
     //add new visit
-    
-//    @PostMapping(value = "/visit/{{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
-//
-//    public PlanetVisit addVisit(@PathVariable(value = "planetId") String planetId,@RequestBody PlanetVisit visitToUpdate){
-//        return DataStore.updateVisit(planetId, visitToUpdate);
+     @PostMapping(value = "/visit/{{planetId}", consumes = {MediaType.APPLICATION_JSON_VALUE})
+
+    public void addVisit(@PathVariable(value = "planetId") int planetId,@RequestBody PlanetVisit visitToUpdate){
+        DataStore.addVisit(planetId, visitToUpdate);
+    }
 }
 

@@ -13,13 +13,18 @@ public class PlanetController {
         return DataStore.listPlanets();
     }
 
-    @GetMapping("/planet/{id}")
+    @GetMapping("/planet/{planetId}")
     public Planet getPlanetById(int planetId) {
         return DataStore.findPlanetById(planetId);
     }
 
-    @PostMapping(value = "/planet/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public Planet addPlanet(@PathVariable(value = "planetId") int planetId, @RequestBody Planet planetToUpdate) {
-        return DataStore.updatePlanet(planetId, planetToUpdate);
+    @PostMapping(value = "/planet/{planetId}", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public Planet addPlanet(@PathVariable(value = "planetId") int planetId, @RequestBody Planet planetToAdd) {
+        return DataStore.updatePlanet(planetId, planetToAdd);
+    }
+
+    @DeleteMapping("/planet/{planetId}")
+    public void deletePlanet(@PathVariable(value = "planetId") int planetId) {
+        DataStore.deletePlanet(planetId);
     }
 }
