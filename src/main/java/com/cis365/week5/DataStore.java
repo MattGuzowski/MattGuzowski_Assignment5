@@ -122,7 +122,7 @@ public class DataStore {
             pv.setStarshipID(visitToAdd.getStarshipID());
             pv.setArrivalStardate(visitToAdd.getArrivalStardate());
             pv.setDepartureStardate(visitToAdd.getDepartureStardate());
-            
+
             session.save(pv);
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -132,7 +132,7 @@ public class DataStore {
         return null;
     }
 
-    public static void addPlanet(int planetId, Planet planetIn) {
+    public static Planet addPlanet(int planetId, Planet planetIn) {
 
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
@@ -144,7 +144,7 @@ public class DataStore {
                 session.save(planetIn);
             }
             tx.commit();
-
+            //return planetIn;
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
@@ -155,6 +155,7 @@ public class DataStore {
         } finally {
             session.close();
         }
+        return planetIn;
     }
 
     public static void addStarship(int starshipId, Starship starshipIn) {
@@ -189,7 +190,8 @@ public class DataStore {
             tx = session.beginTransaction();
             Planet existing = findPlanetById(planetId);
             if (existing != null) {
-                session.createQuery("DELETE FROM Planet WHERE planetId =" + planetId);
+                session.delete(existing);
+                session.flush();
             }
 
         } catch (HibernateException e) {
@@ -211,7 +213,8 @@ public class DataStore {
             tx = session.beginTransaction();
             Starship existing = findStarshipById(starshipId);
             if (existing != null) {
-                session.createQuery("DELETE FROM Starship WHERE starshipId =" + starshipId);
+                session.delete(existing);
+                session.flush();
             }
 
         } catch (HibernateException e) {
@@ -234,7 +237,7 @@ public class DataStore {
             tx = session.beginTransaction();
             Planet existing = findPlanetById(planetId);
             if (existing != null && planetId == planetToUpdate.getPlanetId()) {
-                existing = planetToUpdate;
+                session.update(planetToUpdate);
             }
             tx.commit();
             return planetToUpdate;
@@ -259,7 +262,7 @@ public class DataStore {
             tx = session.beginTransaction();
             Starship existing = findStarshipById(starshipId);
             if (existing != null && starshipId == starshipToUpdate.getStarShipId()) {
-                existing = starshipToUpdate;
+                session.update(starshipToUpdate);
             }
             tx.commit();
             return starshipToUpdate;

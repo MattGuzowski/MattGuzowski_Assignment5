@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Table(name = "PLANET")
 public class Planet {
 
-    public Planet() {}
+    public Planet() {
+    }
 
     @Id
     @Column(name = "PLANETID")

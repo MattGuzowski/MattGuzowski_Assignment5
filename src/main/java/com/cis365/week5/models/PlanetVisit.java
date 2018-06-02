@@ -1,26 +1,30 @@
-
 package com.cis365.week5.models;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="PLANETVISIT")
+@Table(name = "PLANETVISIT")
 public class PlanetVisit {
-    
-    public PlanetVisit(){}
-    
-    @Id //id as primary key
+
+    public PlanetVisit() {
+    }
+
+    @Id
+    //@ManyToOne
+    //@JoinColumn(name="PLANETID")
     @Column(name = "PLANETID")
     private int planetId;
-    
+
     @Id
+    //@ManyToOne
+    //@JoinColumn(name="STARSHIPID")
     @Column(name = "STARSHIPID")
     private int starshipID;
-    
+
     @Id
     @Column(name = "ARRIVALSTARDATE")
     private int arrivalStardate;
-    
+
     @Column(name = "DEPARTURESTARDATE")
     private int departureStardate;
 
@@ -55,5 +59,5 @@ public class PlanetVisit {
     public void setDepartureStardate(int departureStardate) {
         this.departureStardate = departureStardate;
     }
-    
+
 }

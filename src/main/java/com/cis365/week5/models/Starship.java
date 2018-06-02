@@ -3,7 +3,7 @@ package com.cis365.week5.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "STARHIP")
+@Table(name = "STARSHIP")
 public class Starship {
 
     public Starship() {

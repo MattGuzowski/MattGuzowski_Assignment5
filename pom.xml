@@ -16,13 +16,13 @@
     </parent>
 
     <dependencies>
-        <dependency>
+<!--        <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc</artifactId>
             <version>14</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/ojdbc7.jar</systemPath> <!-- must match file name -->
-        </dependency>
+            <systemPath>${basedir}/lib/ojdbc7.jar</systemPath>  must match file name 
+        </dependency>-->
 
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -51,8 +51,16 @@
             <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
-
-
+<!--        <dependency>
+            <groupId>ojdbc</groupId>
+            <artifactId>ojdbc</artifactId>
+            <version>14</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc</artifactId>
+            <version>14</version>
+        </dependency>
     </dependencies>
 
     <build>
