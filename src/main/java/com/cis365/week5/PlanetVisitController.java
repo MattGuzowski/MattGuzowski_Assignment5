@@ -13,12 +13,14 @@ public class PlanetVisitController {
     public List<PlanetVisit> visits() {
         return DataStore.listVisits();
     }
-       
-    //add new visit
-     @PostMapping(value = "/visit/{{planetId}", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping("/visit/{visitCount}")
+    public PlanetVisit getPlanetVisit(@PathVariable(value="visitCount") int visitCount) {
+        return DataStore.findVisitByVisitCount(visitCount);
+    }
 
-    public void addVisit(@PathVariable(value = "planetId") int planetId,@RequestBody PlanetVisit visitToUpdate){
-        DataStore.addVisit(planetId, visitToUpdate);
+     @PostMapping(value = "/visit/{visitCount}", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public PlanetVisit addVisit(@PathVariable(value = "visitCount")int visitCount, @RequestBody PlanetVisit visitToAdd){
+        return DataStore.addVisit(visitCount, visitToAdd);
     }
 }
 

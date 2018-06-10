@@ -8,26 +8,31 @@ public class PlanetVisit {
 
     public PlanetVisit() {
     }
-
+    
     @Id
-    //@ManyToOne
-    //@JoinColumn(name="PLANETID")
+    //@GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "VISITCOUNT")
+    private int visitCount;
+    
     @Column(name = "PLANETID")
     private int planetId;
 
-    @Id
-    //@ManyToOne
-    //@JoinColumn(name="STARSHIPID")
     @Column(name = "STARSHIPID")
     private int starshipID;
 
-    @Id
     @Column(name = "ARRIVALSTARDATE")
     private int arrivalStardate;
 
     @Column(name = "DEPARTURESTARDATE")
     private int departureStardate;
 
+    public int getVisitCount(){
+        return visitCount;
+    }
+    
+    public void setVisitCount(int visitCountIn){
+        this.visitCount = visitCountIn;
+    }
     public int getPlanetId() {
         return planetId;
     }

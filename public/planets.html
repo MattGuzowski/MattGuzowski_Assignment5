@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+  <head>
+  <title>Planets</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  </head>
+   <h1 align="center">Planets</h1>
+  <body ng-app="myApp" ng-controller="appController">
+
+	<table align = "center">
+		<tr>
+			<th>PlanetId</th>
+			<th>Name</th>
+			<th>Radius</th>
+			<th>Atmosphere</th>
+		</tr>
+		<tr ng-repeat = "planet in planet | orderBy: 'planetId'">			
+			<td>{{planet.planetId}}</td>
+			<td>{{planet.name}}</td>
+			<td>{{planet.radius}}</td>
+			<td>{{planet.atmosphere}}</td>
+		</tr>
+	</table>
+	<script src="./js/app.js"></script>
+	<script src="./js/planet_controller.js"></script>
+	<script src="./js/service.js"></script>
+  </body>
+</html>

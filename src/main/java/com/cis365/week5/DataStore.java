@@ -17,23 +17,8 @@ public class DataStore {
 
     private static SessionFactory buildSessionFactory() {
         try {
-
-//            String dbName = System.getenv("RDS_DB_NAME");
-//            String userName = System.getenv("RDS_USERNAME");
-//            String password = System.getenv("RDS_PASSWORD");
-//            String hostName = System.getenv("RDS_HOSTNAME");
-//            String port = System.getenv("RDS_PORT");
-//            String jdbcUrl = "jdbc:oracle:thin:@" + hostName + ":" + port + ":" + dbName;
-            // Create the SessionFactory from hibernate.cfg.xml
             Configuration cfg = new Configuration();
-
-//            cfg.setProperty("connection.driver_class", "oracle.jdbc.driver.OracleDriver");
-//            cfg.setProperty("hibernate.connection.url", jdbcUrl);
-//            cfg.setProperty("hibernate.connection.username", userName);
-//            cfg.setProperty("hibernate.connection.password", password);
-//            cfg.setProperty("hibernate.hbm2ddl.auto", "update");
-//            cfg.setProperty("dialect", "org.hibernatge.dialect.Oracle10gDialect");
-            cfg.configure("hibernate.cfg.xml");//populates the data of the configuration file
+            cfg.configure("hibernate.cfg.xml");
             return cfg.buildSessionFactory();
         } catch (Throwable ex) {
             System.err.println("Initial SessionFactory creation failed." + ex);
@@ -112,24 +97,44 @@ public class DataStore {
         return null;
     }
 
-    public static PlanetVisit addVisit(int planetId, PlanetVisit visitToAdd) {
+    public static PlanetVisit findVisitByVisitCount(int visitCount) {
 
         Session session = getSessionFactory().openSession();
-        PlanetVisit pv = new PlanetVisit();
 
         try {
-            pv.setPlanetId(visitToAdd.getPlanetId());
-            pv.setStarshipID(visitToAdd.getStarshipID());
-            pv.setArrivalStardate(visitToAdd.getArrivalStardate());
-            pv.setDepartureStardate(visitToAdd.getDepartureStardate());
-
-            session.save(pv);
+            return (PlanetVisit) session.get(PlanetVisit.class, visitCount);
         } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             session.close();
         }
         return null;
+    }
+
+    public static PlanetVisit addVisit(int visitCount, PlanetVisit visitToAdd) {
+
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+
+            tx = session.beginTransaction();
+            PlanetVisit existing = findVisitByVisitCount(visitCount);
+            if (existing == null) {
+                session.save(visitToAdd);
+            }
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return visitToAdd;
     }
 
     public static Planet addPlanet(int planetId, Planet planetIn) {
@@ -144,7 +149,6 @@ public class DataStore {
                 session.save(planetIn);
             }
             tx.commit();
-            //return planetIn;
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();

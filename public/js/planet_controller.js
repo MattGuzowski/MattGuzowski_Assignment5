@@ -1,10 +1,7 @@
 app.controller('appController',["$scope","$log","appService",
 	function($scope, $log, appService){
-		$scope.firstName = "John";
-		$scope.lastName = "Doe";
-		//$scope.planet = appService.getPlanet();
 		$scope.planet = null;
-		$log.info("test");
+		$log.info("planet");
 		$scope.loadPlanets = function(){
 			var promiseGet = appService.getPlanet();
 			promiseGet.then(function (result) {
@@ -13,7 +10,7 @@ app.controller('appController',["$scope","$log","appService",
 					$scope.planet = result.data;
 				}
 		}, function (reason) {
-			$log.error("failure loading database information",reason);
+			$log.error("failure loading planet database information",reason);
 		});
 	};
 	

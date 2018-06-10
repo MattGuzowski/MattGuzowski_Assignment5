@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+  <head>
+  <title>Visits</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  </head>
+  <h1 align="center">Visits</h1>
+  <body ng-app="myApp" ng-controller="appController">
+	<table align ="center">
+		<tr>
+			<th>VisitCount</th>
+			<th>PlanetId</th>
+			<th>StarshipId</th>
+			<th>ArrivalStardate</th>
+			<th>DepartureStardate</th>
+		</th>
+		<tr ng-repeat = "visit in visit | orderBy: 'visitCount'">
+			<td>{{visit.visitCount}}</td>
+			<!--<td>{{visit.planetId}}</td> -->
+			<td><a ng-click= "getPlanetId(visit)">{{visit.planetId}}</a></td>
+			<td>{{visit.starShipId}}</td>
+			<td>{{visit.arrivalStardate}}</td>
+			<td>{{visit.departureStardate}}</td>
+		</tr>
+	</table>			
+	<script src="./js/app.js"></script>
+	<script src="./js/visit_controller.js"></script>
+	<script src="./js/service.js"></script>
+  </body>
+</html>
