@@ -11,4 +11,10 @@ app.service('appService', ["$http", function($http){
 	this.getVisit = function(){
 		return $http.get("visit");
 	}	
+
+	this.getPlanetById = function(planetId){
+		var str1 = "planet/"
+		var qry = str1+ planetId;
+		return $http.get(qry);
+	}
 }]);

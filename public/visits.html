@@ -29,9 +29,12 @@ table tr:nth-child(even) {
 		</th>
 		<tr ng-repeat = "visit in visit | orderBy: 'visitCount'">
 			<td>{{visit.visitCount}}</td>
-			<!--<td>{{visit.planetId}}</td> -->
-			<td><a ng-click= "getPlanetId(visit)">{{visit.planetId}}</a></td>
-			<td>{{visit.starShipId}}</td>
+			<td><a href="planet/{{visit.planetId}}">{{visit.planetId}}</a></td>
+			<!--<td ng-click= "getPlanetId(visit.planetId)">{{visit.planetId}}</td> -->
+			<!--<td><a href="localhost:8080/planet/{{visit.planetId}}">{{visit.planetId}}</a></td> -->
+			<!--<td><a href="localhost:8080/planets.html">{{visit.planetId}}</a></td> -->
+			<!--<a href="#" onClick="window.open('localhost:8080/planets.html', '_blank')">test</a> -->
+			<td>{{visit.starshipID}}</td>
 			<td>{{visit.arrivalStardate}}</td>
 			<td>{{visit.departureStardate}}</td>
 		</tr>

@@ -17,7 +17,7 @@ app.controller('appController',["$scope","$log","appService",
 	
 	$scope.planetId = this.visit;
 	$scope.getPlanetId = function(visit){
-		var promiseGet = appService.getPlanet(visit);
+		var promiseGet = appService.getPlanetById(visit);
 		promiseGet.then(function (result) { 
 			if (result && result.data){
 				$log.info(result.data)
